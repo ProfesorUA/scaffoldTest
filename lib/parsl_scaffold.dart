@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app_test/main.dart';
 import 'package:getx_app_test/parsl_bottom_navigation_bar.dart';
 
 enum ParslBottomBarAction { exit, help, actions }
 
 extension ParslBottomBarActionInfo on ParslBottomBarAction {
   Icon get buttonIcon {
+    IconData iconData;
     switch (this) {
       case ParslBottomBarAction.exit:
-        return Icon(Icons.close_sharp);
+        iconData = Icons.close_sharp;
+        break;
       case ParslBottomBarAction.help:
-        return Icon(Icons.help_outline_rounded);
+        iconData = Icons.help_outline_rounded;
+        break;
       case ParslBottomBarAction.actions:
-        return Icon(Icons.local_attraction_sharp);
+        iconData = Icons.local_attraction_sharp;
+        break;
       default:
-        return Icon(Icons.error);
+        iconData = Icons.error;
     }
+
+    return Icon(
+      iconData,
+      color: Color(0xff808084),
+    );
   }
 
   String get buttonTitle {
@@ -27,7 +37,7 @@ extension ParslBottomBarActionInfo on ParslBottomBarAction {
       case ParslBottomBarAction.actions:
         return "Actions";
       default:
-        return "Actions";
+        return "Not implemented";
     }
   }
 
@@ -36,7 +46,7 @@ extension ParslBottomBarActionInfo on ParslBottomBarAction {
       case ParslBottomBarAction.exit:
         return Icon(Icons.close_sharp);
       case ParslBottomBarAction.help:
-        Get.until((route) => route.isFirst);
+        Get.to(SecondScreen());
         return null;
       case ParslBottomBarAction.actions:
         return Icon(Icons.local_attraction_sharp);
@@ -107,6 +117,6 @@ class ParslScaffold extends Scaffold {
 
   @override
   Widget get bottomNavigationBar => ParslBottomNavigationBar(
-        leftNavigationAction: leftNavigationAction,
+        leftBottomBarAction: leftNavigationAction,
       );
 }

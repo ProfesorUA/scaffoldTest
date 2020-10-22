@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:getx_app_test/parsl_scaffold.dart';
 
 class ParslBottomNavigationBar extends StatelessWidget {
-  final ParslBottomBarAction leftNavigationAction;
+  final ParslBottomBarAction leftBottomBarAction;
+  final ParslBottomBarAction rightBottomBarAction;
 
-  ParslBottomNavigationBar({this.leftNavigationAction});
+  ParslBottomNavigationBar(
+      {this.leftBottomBarAction, this.rightBottomBarAction});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +31,47 @@ class ParslBottomNavigationBar extends StatelessWidget {
               height: 80,
               child: Row(
                 children: [
-                  InkWell(
-                    child: leftNavigationAction.buttonIcon,
-                    onTap: leftNavigationAction.buttonAction,
-                  )
+                  Expanded(
+                    child: InkWell(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(height: 11),
+                          leftBottomBarAction.buttonIcon,
+                          SizedBox(height: 7),
+                          Text(
+                            leftBottomBarAction.buttonTitle,
+                            style: TextStyle(
+                                color: Color(0xff808084), fontSize: 12),
+                          ),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                      onTap: () => leftBottomBarAction.buttonAction(),
+                    ),
+                  ),
+                  Container(width: 72),
+                  Expanded(
+                    child: InkWell(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(height: 11),
+                          rightBottomBarAction.buttonIcon,
+                          SizedBox(height: 7),
+                          Text(
+                            rightBottomBarAction.buttonTitle,
+                            style: TextStyle(
+                                color: Color(0xff808084), fontSize: 12),
+                          ),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                      onTap: () => rightBottomBarAction.buttonAction(),
+                    ),
+                  ),
                 ],
               ),
             ),
