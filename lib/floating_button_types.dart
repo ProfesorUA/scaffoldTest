@@ -4,14 +4,23 @@ enum FloatingButtonType { scanTag, scanPackage }
 
 extension FloatingButtonInfo on FloatingButtonType {
   Icon get buttonIcon {
+    IconData data;
     switch (this) {
       case FloatingButtonType.scanTag:
-        return Icon(Icons.qr_code_scanner);
+        data = Icons.qr_code_scanner;
+        break;
       case FloatingButtonType.scanPackage:
-        return Icon(Icons.settings_overscan);
+        data = Icons.settings_overscan;
+        break;
       default:
-        return Icon(Icons.error);
+        data = Icons.error;
+        break;
     }
+
+    return Icon(
+      data,
+      color: Colors.white,
+    );
   }
 
   Future<dynamic> floatingButtonAction() async {
