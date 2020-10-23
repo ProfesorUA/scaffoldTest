@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:getx_app_test/parsl_scaffold.dart';
+part of 'parsl_scaffold.dart';
 
 class ParslBottomNavigationBar extends StatelessWidget {
   final ParslBottomBarAction leftBottomBarAction;
@@ -80,31 +78,6 @@ class ParslBottomNavigationBar extends StatelessWidget {
       ),
     );
   }
-}
-
-class _InvertedClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.moveTo(0, size.height);
-    path.lineTo(0, size.height * 0.10);
-    path.quadraticBezierTo(
-        size.width * -0.00, size.height * -0.00, size.width * 0.03, 0);
-    path.lineTo(size.width / 2 - 34, 0);
-    path.arcToPoint(Offset(size.width / 2 + 34, 0),
-        radius: Radius.circular(34), clockwise: false);
-    path.lineTo(size.width * 0.97, 0);
-    path.quadraticBezierTo(
-        size.width * 1.00, size.height * 0.00, size.width, size.height * 0.10);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.close();
-    path.fillType = PathFillType.evenOdd;
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }
 
 class _CustomPainter extends CustomPainter {

@@ -34,6 +34,7 @@ class MyHomePage extends StatelessWidget {
         print(result);
       },
       leftNavigationAction: ParslBottomBarAction.help,
+      rightNavigationAction: ParslBottomBarAction.actions,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
